@@ -9,4 +9,6 @@ public class ViewConstants {
     public static final String INSERTING_MONEY = "투입 금액: %d원";
     public static final String ASKING_PRODUCT_NAME = "구매할 상품명을 입력해 주세요.";
     public static final String CHANGE = "잔돈";
+
+    public static final String NONNEGATIVE_INTEGER_REGEX = "[0-9]*";
 }
