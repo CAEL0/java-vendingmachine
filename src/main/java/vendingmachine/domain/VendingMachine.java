@@ -9,12 +9,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class VendingMachine {
-    private final List<Integer> coinQuantities;
-    private final List<Product> productList;
+    private final List<Integer> coinQuantities = new ArrayList<>();
+    private final List<Product> productList = new ArrayList<>();
 
-    public VendingMachine() {
-        coinQuantities = new ArrayList<>();
-        productList = new ArrayList<>();
+    public VendingMachine(int holdingSum) {
+        validateNumberIsNonnegative(holdingSum);
+        validateNumberIsMultipleOfTen(holdingSum);
+        generateCoins(holdingSum);
     }
 
     private void validateNumberIsNonnegative(int number) {
