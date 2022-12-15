@@ -33,4 +33,11 @@ public class InputView {
         System.out.println();
         return parse(input);
     }
+
+    public String readProductName() {
+        System.out.println(ViewConstants.ASKING_PRODUCT_NAME);
+        String input = Console.readLine();
+        System.out.println();
+        return input;
+    }
 }
