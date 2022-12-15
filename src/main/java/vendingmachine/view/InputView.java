@@ -26,4 +26,11 @@ public class InputView {
         System.out.println();
         return input;
     }
+
+    public int readInsertingMoney() {
+        System.out.println(ViewConstants.ASKING_INSERTING_MONEY);
+        String input = Console.readLine();
+        System.out.println();
+        return parse(input);
+    }
 }
