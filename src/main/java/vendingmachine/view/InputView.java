@@ -9,10 +9,7 @@ public class InputView {
         System.out.println(ViewConstants.ASKING_HOLDING_SUM);
         String input = Console.readLine();
         System.out.println();
-
-        int parsedInput = parse(input);
-        isNonnegative(parsedInput);
-        return parsedInput;
+        return parse(input);
     }
 
     private int parse(String input) {
@@ -20,12 +17,6 @@ public class InputView {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ExceptionConstants.INCORRECT_RANGE.getMessage());
-        }
-    }
-
-    private void isNonnegative(int number) {
-        if (number < 0) {
-            throw new IllegalArgumentException(ExceptionConstants.NOT_NEGATIVE.getMessage());
         }
     }
 }
