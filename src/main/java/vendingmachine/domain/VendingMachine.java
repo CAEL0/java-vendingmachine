@@ -2,10 +2,12 @@ package vendingmachine.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import vendingmachine.constant.ExceptionConstants;
+import vendingmachine.constant.VendingMachineConstants;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class VendingMachine {
@@ -39,6 +41,12 @@ public class VendingMachine {
     private void validateNumberIsMultipleOfTen(int number) {
         if (number % 10 != 0) {
             throw new IllegalArgumentException(ExceptionConstants.NOT_MULTIPLE_OF_TEN.getMessage());
+        }
+    }
+
+    private void validateProduct(String product) {
+        if (!Pattern.matches(VendingMachineConstants.PRODUCT_REGEX, product)) {
+            throw new IllegalArgumentException(ExceptionConstants.INCORRECT_PRODUCT_LIST.getMessage());
         }
     }
 }
