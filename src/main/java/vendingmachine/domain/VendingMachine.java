@@ -1,5 +1,7 @@
 package vendingmachine.domain;
 
+import vendingmachine.constant.ExceptionConstants;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,5 +12,11 @@ public class VendingMachine {
     public VendingMachine() {
         coinQuantities = new ArrayList<>();
         productList = new ArrayList<>();
+    }
+
+    private void validateNumberIsNonnegative(int number) {
+        if (number < 0) {
+            throw new IllegalArgumentException(ExceptionConstants.NOT_NEGATIVE.getMessage());
+        }
     }
 }
