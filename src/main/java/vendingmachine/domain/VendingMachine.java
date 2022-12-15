@@ -5,9 +5,7 @@ import vendingmachine.constant.ExceptionConstants;
 import vendingmachine.constant.VendingMachineConstants;
 import vendingmachine.util.Validator;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -55,5 +53,13 @@ public class VendingMachine {
         String amount = productInfo.get(2);
 
         productList.add(new Product(name, price, amount));
+    }
+
+    private void validateDuplication() {
+        Set<String> productNames = new HashSet<>();
+        productList.forEach(product -> productNames.add(product.getName()));
+        if (productList.size() != productNames.size()) {
+            throw new IllegalArgumentException(ExceptionConstants.DUPLICATED_PRODUCT_NAME.getMessage());
+        }
     }
 }
