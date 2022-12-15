@@ -19,4 +19,10 @@ public class VendingMachine {
             throw new IllegalArgumentException(ExceptionConstants.NOT_NEGATIVE.getMessage());
         }
     }
+
+    private void validateNumberIsMultipleOfTen(int number) {
+        if (number % 10 != 0) {
+            throw new IllegalArgumentException(ExceptionConstants.NOT_MULTIPLE_OF_TEN.getMessage());
+        }
+    }
 }
