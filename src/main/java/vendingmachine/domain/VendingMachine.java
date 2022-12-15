@@ -33,9 +33,11 @@ public class VendingMachine {
         }
     }
 
-    private void validateProductList(String productList) {
+    public void addProducts(String productList) {
+        this.productList.clear();
         Arrays.stream(productList.split(VendingMachineConstants.PRODUCT_DELIMITER))
-                .forEach(this::validateProduct);
+                .peek(this::validateProduct)
+                .forEach(this::addProduct);
     }
 
     private void validateProduct(String product) {
