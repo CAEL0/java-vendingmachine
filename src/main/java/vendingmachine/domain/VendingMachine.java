@@ -54,4 +54,15 @@ public class VendingMachine {
             throw new IllegalArgumentException(ExceptionConstants.INCORRECT_PRODUCT_LIST.getMessage());
         }
     }
+
+    private void addProduct(String product) {
+        String parsedProduct = product.substring(1, product.length() - 1);
+        List<String> productInfo = List.of(parsedProduct.split(VendingMachineConstants.DELIMITER));
+
+        String name = productInfo.get(0);
+        String price = productInfo.get(1);
+        String amount = productInfo.get(2);
+
+        productList.add(new Product(name, price, amount));
+    }
 }
