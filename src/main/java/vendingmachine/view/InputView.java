@@ -19,4 +19,11 @@ public class InputView {
             throw new IllegalArgumentException(ExceptionConstants.INCORRECT_RANGE.getMessage());
         }
     }
+
+    public String readProductList() {
+        System.out.println(ViewConstants.ASKING_PRODUCT_LIST);
+        String input = Console.readLine();
+        System.out.println();
+        return input;
+    }
 }
