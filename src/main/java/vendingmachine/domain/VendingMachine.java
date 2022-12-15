@@ -16,7 +16,7 @@ public class VendingMachine {
     private final List<Product> productList = new ArrayList<>();
 
     public void generateCoins(int holdingSum) {
-        Validator.validateNumberIsNonnegative(holdingSum);
+        Validator.validateLowerBound(holdingSum, 0);
         Validator.validateNumberIsMultipleOfTen(holdingSum);
         List<Integer> coinValues = Arrays.stream(Coin.values())
                 .map(Coin::getAmount)
