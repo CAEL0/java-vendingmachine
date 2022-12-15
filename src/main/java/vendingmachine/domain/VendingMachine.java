@@ -12,25 +12,9 @@ public class VendingMachine {
     private final List<Integer> coinQuantities = new ArrayList<>();
     private final List<Product> productList = new ArrayList<>();
 
-    public VendingMachine(int holdingSum) {
+    public void generateCoins(int holdingSum) {
         validateNumberIsNonnegative(holdingSum);
         validateNumberIsMultipleOfTen(holdingSum);
-        generateCoins(holdingSum);
-    }
-
-    private void validateNumberIsNonnegative(int number) {
-        if (number < 0) {
-            throw new IllegalArgumentException(ExceptionConstants.NOT_NEGATIVE.getMessage());
-        }
-    }
-
-    private void validateNumberIsMultipleOfTen(int number) {
-        if (number % 10 != 0) {
-            throw new IllegalArgumentException(ExceptionConstants.NOT_MULTIPLE_OF_TEN.getMessage());
-        }
-    }
-
-    private void generateCoins(int holdingSum) {
         List<Integer> coinValues = Arrays.stream(Coin.values())
                 .map(Coin::getAmount)
                 .collect(Collectors.toList());
@@ -43,6 +27,18 @@ public class VendingMachine {
                 int quantity = coinQuantities.get(index);
                 coinQuantities.set(index, quantity + 1);
             }
+        }
+    }
+
+    private void validateNumberIsNonnegative(int number) {
+        if (number < 0) {
+            throw new IllegalArgumentException(ExceptionConstants.NOT_NEGATIVE.getMessage());
+        }
+    }
+
+    private void validateNumberIsMultipleOfTen(int number) {
+        if (number % 10 != 0) {
+            throw new IllegalArgumentException(ExceptionConstants.NOT_MULTIPLE_OF_TEN.getMessage());
         }
     }
 }
