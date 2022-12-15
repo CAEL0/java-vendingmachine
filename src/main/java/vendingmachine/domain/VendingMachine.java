@@ -44,6 +44,11 @@ public class VendingMachine {
         }
     }
 
+    private void validateProductList(String productList) {
+        Arrays.stream(productList.split(VendingMachineConstants.PRODUCT_DELIMITER))
+                .forEach(this::validateProduct);
+    }
+
     private void validateProduct(String product) {
         if (!Pattern.matches(VendingMachineConstants.PRODUCT_REGEX, product)) {
             throw new IllegalArgumentException(ExceptionConstants.INCORRECT_PRODUCT_LIST.getMessage());
