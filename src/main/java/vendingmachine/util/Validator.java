@@ -15,4 +15,9 @@ public class Validator {
             throw new IllegalArgumentException(ExceptionConstants.NOT_MULTIPLE_OF_TEN.getMessage());
         }
     }
+    public static void validateLowerBound(int number, int lowerBound) {
+        if (number < lowerBound) {
+            throw new IllegalArgumentException();
+        }
+    }
 }
