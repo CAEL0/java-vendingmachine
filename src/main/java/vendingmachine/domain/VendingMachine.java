@@ -36,6 +36,8 @@ public class VendingMachine {
         Arrays.stream(productList.split(VendingMachineConstants.PRODUCT_DELIMITER))
                 .peek(this::validateProduct)
                 .forEach(this::addProduct);
+
+        validateDuplication();
     }
 
     private void validateProduct(String product) {
