@@ -3,6 +3,7 @@ package vendingmachine.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import vendingmachine.constant.ExceptionConstants;
 import vendingmachine.constant.VendingMachineConstants;
+import vendingmachine.util.Validator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,8 +16,8 @@ public class VendingMachine {
     private final List<Product> productList = new ArrayList<>();
 
     public void generateCoins(int holdingSum) {
-        validateNumberIsNonnegative(holdingSum);
-        validateNumberIsMultipleOfTen(holdingSum);
+        Validator.validateNumberIsNonnegative(holdingSum);
+        Validator.validateNumberIsMultipleOfTen(holdingSum);
         List<Integer> coinValues = Arrays.stream(Coin.values())
                 .map(Coin::getAmount)
                 .collect(Collectors.toList());
@@ -29,18 +30,6 @@ public class VendingMachine {
                 int quantity = coinQuantities.get(index);
                 coinQuantities.set(index, quantity + 1);
             }
-        }
-    }
-
-    private void validateNumberIsNonnegative(int number) {
-        if (number < 0) {
-            throw new IllegalArgumentException(ExceptionConstants.NOT_NEGATIVE.getMessage());
-        }
-    }
-
-    private void validateNumberIsMultipleOfTen(int number) {
-        if (number % 10 != 0) {
-            throw new IllegalArgumentException(ExceptionConstants.NOT_MULTIPLE_OF_TEN.getMessage());
         }
     }
 
