@@ -1,6 +1,7 @@
 package vendingmachine.domain;
 
 import java.util.List;
+import java.util.OptionalInt;
 
 public class VendingMachine {
     private CoinQuantities coinQuantities;
@@ -23,6 +24,11 @@ public class VendingMachine {
         Product product = productList.getProduct(productName);
         insertedMoney.useMoney(product.getPrice());
         product.buy();
+    }
+
+    public boolean canBuy() {
+        OptionalInt minimumPrice = productList.getMinimumPrice();
+        return minimumPrice.isPresent() && minimumPrice.getAsInt() <= insertedMoney.getInsertedMoney();
     }
 
     public List<Integer> getCoinQuantities() {
