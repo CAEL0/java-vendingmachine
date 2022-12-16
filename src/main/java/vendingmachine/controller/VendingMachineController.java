@@ -13,6 +13,11 @@ public class VendingMachineController {
         initCoin();
         initProduct();
         insertMoney();
+        while (vendingMachine.canBuy()) {
+            outputView.printInsertedMoney(vendingMachine.getInsertedMoney());
+            buy();
+        }
+        outputView.printChange(vendingMachine.getCoinQuantities(), vendingMachine.getInsertedMoney());
     }
 
     private void initCoin() {
@@ -45,6 +50,18 @@ public class VendingMachineController {
         while (true) {
             try {
                 vendingMachine.insertMoney(insertedMoney);
+                return;
+            } catch (IllegalArgumentException e) {
+                outputView.printException(e);
+            }
+        }
+    }
+
+    private void buy() {
+        String productName = inputView.readProductName();
+        while (true) {
+            try {
+                vendingMachine.buyProduct(productName);
                 return;
             } catch (IllegalArgumentException e) {
                 outputView.printException(e);
