@@ -45,7 +45,7 @@ public class ProductList {
         productList.add(new Product(name, price, amount));
     }
 
-    private void validateBuyingProduct(String productName) {
+    private void validateProductName(String productName) {
         if (!productNames.contains(productName)) {
             throw new IllegalArgumentException(ExceptionConstants.NO_SUCH_PRODUCT.getMessage());
         }
