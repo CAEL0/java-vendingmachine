@@ -13,10 +13,11 @@ public class InsertedMoney {
     }
 
     public void useMoney(int price) {
+        validateUsingMoney(price);
         insertedMoney -= price;
     }
 
-    public void validateUsingMoney(int price) {
+    private void validateUsingMoney(int price) {
         if (insertedMoney < price) {
             throw new IllegalArgumentException(ExceptionConstants.NOT_ENOUGH_MONEY.getMessage());
         }
