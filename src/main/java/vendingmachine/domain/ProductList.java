@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 public class ProductList {
     private final List<Product> productList = new ArrayList<>();
+    private final Set<String> productNames = new HashSet<>();
 
     public ProductList(String productList) {
         List<String> splittedProductList = List.of(productList.split(VendingMachineConstants.PRODUCT_DELIMITER));
@@ -19,7 +20,7 @@ public class ProductList {
     }
 
     private void validateDuplication(int size) {
-        Set<String> productNames = new HashSet<>();
+        productNames.clear();
         productList.forEach(product -> productNames.add(product.getName()));
 
         if (productNames.size() != size) {
@@ -42,5 +43,11 @@ public class ProductList {
         String amount = productInfo.get(2);
 
         productList.add(new Product(name, price, amount));
+    }
+
+    private void validateBuyingProduct(String productName) {
+        if (!productNames.contains(productName)) {
+            throw new IllegalArgumentException(ExceptionConstants.NO_SUCH_PRODUCT.getMessage());
+        }
     }
 }
