@@ -1,7 +1,6 @@
 package vendingmachine.view;
 
 import vendingmachine.domain.Coin;
-import vendingmachine.domain.VendingMachine;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -24,5 +23,18 @@ public class OutputView {
     public void printInsertedMoney(int insertedMoney) {
         System.out.printf(ViewConstants.INSERTED_MONEY, insertedMoney);
         System.out.println();
+    }
+
+    public void printChange(List<Integer> coinQuantities, int insertedMoney) {
+        System.out.println(ViewConstants.CHANGE);
+
+        List<Coin> coinList = List.of(Coin.values());
+        IntStream.range(0, 4)
+                .forEach(i -> {
+                    int amount = coinList.get(i).getAmount();
+                    int quantity = Math.min(coinQuantities.get(i), insertedMoney / amount);
+                    System.out.printf(ViewConstants.COIN_QUANTITY, amount, quantity);
+                    System.out.println();
+                });
     }
 }
