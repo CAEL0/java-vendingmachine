@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CoinQuantities {
-    private final List<Integer> coinQuantities = new ArrayList<>();
+    private final List<Integer> coinQuantities = new ArrayList<>(List.of(0, 0, 0, 0));
 
     public CoinQuantities(int holdingSum) {
         Validator.validateLowerBound(holdingSum, 0);
