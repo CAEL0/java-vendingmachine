@@ -17,19 +17,15 @@ public class VendingMachineController {
 
     private void initCoin() {
         String holdingSum = inputView.readHoldingSum();
-        generateCoins(holdingSum);
-        outputView.printCoinQuantityList(vendingMachine.getCoinQuantities());
-    }
-
-    private void generateCoins(String holdingSum) {
         while (true) {
             try {
                 vendingMachine.generateCoins(holdingSum);
-                return;
+                break;
             } catch (IllegalArgumentException e) {
                 outputView.printException(e);
             }
         }
+        outputView.printCoinQuantityList(vendingMachine.getCoinQuantities());
     }
 
     private void initProduct() {
