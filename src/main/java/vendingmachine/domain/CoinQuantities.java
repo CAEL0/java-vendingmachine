@@ -33,7 +33,7 @@ public class CoinQuantities {
         }
     }
 
-    public List<Integer> getCoinQuantities() {
-        return coinQuantities;
+    public int get(int index) {
+        return coinQuantities.get(index);
     }
 }
