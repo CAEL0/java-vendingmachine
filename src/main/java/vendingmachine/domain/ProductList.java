@@ -51,12 +51,21 @@ public class ProductList {
                 .collect(Collectors.toList());
 
         validateProductName(targetProduct);
-        return targetProduct.get(0);
+        Product product = targetProduct.get(0);
+
+        validateProductAmount(product);
+        return product;
     }
 
     private void validateProductName(List<Product> targetProduct) {
         if (targetProduct.size() == 0) {
             throw new IllegalArgumentException(ExceptionConstants.NO_SUCH_PRODUCT.getMessage());
+        }
+    }
+
+    private void validateProductAmount(Product product) {
+        if (product.getAmount() == 0) {
+            throw new IllegalArgumentException(ExceptionConstants.SOLD_OUT.getMessage());
         }
     }
 }
