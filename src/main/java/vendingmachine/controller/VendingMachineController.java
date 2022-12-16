@@ -21,9 +21,9 @@ public class VendingMachineController {
     }
 
     private void initCoin() {
-        String holdingSum = inputView.readHoldingSum();
         while (true) {
             try {
+                String holdingSum = inputView.readHoldingSum();
                 vendingMachine.generateCoins(holdingSum);
                 break;
             } catch (IllegalArgumentException e) {
@@ -34,9 +34,9 @@ public class VendingMachineController {
     }
 
     private void initProduct() {
-        String productList = inputView.readProductList();
         while (true) {
             try {
+                String productList = inputView.readProductList();
                 vendingMachine.addProducts(productList);
                 return;
             } catch (IllegalArgumentException e) {
@@ -46,9 +46,9 @@ public class VendingMachineController {
     }
 
     private void insertMoney() {
-        String insertedMoney = inputView.readInsertedMoney();
         while (true) {
             try {
+                String insertedMoney = inputView.readInsertedMoney();
                 vendingMachine.insertMoney(insertedMoney);
                 return;
             } catch (IllegalArgumentException e) {
@@ -58,9 +58,9 @@ public class VendingMachineController {
     }
 
     private void buy() {
-        String productName = inputView.readProductName();
         while (true) {
             try {
+                String productName = inputView.readProductName();
                 vendingMachine.buyProduct(productName);
                 return;
             } catch (IllegalArgumentException e) {
