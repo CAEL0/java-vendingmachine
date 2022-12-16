@@ -36,6 +36,7 @@ public class OutputView {
                 .forEach(i -> {
                     int amount = coinList.get(i).getAmount();
                     int quantity = Math.min(coinQuantities.get(i), insertedMoney.getInsertedMoney() / amount);
+                    insertedMoney.useMoney(amount * quantity);
                     System.out.printf(ViewConstants.COIN_QUANTITY, amount, quantity);
                     System.out.println();
                 });
