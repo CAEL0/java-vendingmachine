@@ -28,6 +28,12 @@ public class Product {
         }
     }
 
+    public void validateAmount() {
+        if (amount == 0) {
+            throw new IllegalArgumentException(ExceptionConstants.SOLD_OUT.getMessage());
+        }
+    }
+
     public void buy() {
         amount--;
     }
