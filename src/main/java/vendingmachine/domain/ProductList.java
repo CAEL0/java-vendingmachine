@@ -5,10 +5,10 @@ import vendingmachine.constant.VendingMachineConstants;
 
 import java.util.*;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class ProductList {
     private final List<Product> productList = new ArrayList<>();
-    private final Set<String> productNames = new HashSet<>();
 
     public ProductList(String productList) {
         List<String> splittedProductList = List.of(productList.split(VendingMachineConstants.PRODUCT_DELIMITER));
@@ -20,7 +20,7 @@ public class ProductList {
     }
 
     private void validateDuplication(int size) {
-        productNames.clear();
+        Set<String> productNames = new HashSet<>();
         productList.forEach(product -> productNames.add(product.getName()));
 
         if (productNames.size() != size) {
@@ -45,8 +45,17 @@ public class ProductList {
         productList.add(new Product(name, price, amount));
     }
 
-    private void validateProductName(String productName) {
-        if (!productNames.contains(productName)) {
+    public int getPrice(String productName) {
+        List<Product> targetProduct = productList.stream()
+                .filter(product -> product.getName().equals(productName))
+                .collect(Collectors.toList());
+
+        validateProductName(targetProduct);
+        return targetProduct.get(0).getPrice();
+    }
+
+    private void validateProductName(List<Product> targetProduct) {
+        if (targetProduct.size() == 0) {
             throw new IllegalArgumentException(ExceptionConstants.NO_SUCH_PRODUCT.getMessage());
         }
     }
