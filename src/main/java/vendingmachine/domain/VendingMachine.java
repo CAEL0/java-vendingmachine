@@ -1,5 +1,7 @@
 package vendingmachine.domain;
 
+import vendingmachine.util.Parser;
+
 import java.util.List;
 import java.util.OptionalInt;
 
@@ -8,16 +10,16 @@ public class VendingMachine {
     private ProductList productList;
     private InsertedMoney insertedMoney;
 
-    public void generateCoins(int holdingSum) {
-        coinQuantities = new CoinQuantities(holdingSum);
+    public void generateCoins(String holdingSum) {
+        coinQuantities = new CoinQuantities(Parser.parse(holdingSum));
     }
 
     public void addProducts(String productList) {
         this.productList = new ProductList(productList);
     }
 
-    public void insertMoney(int insertedMoney) {
-        this.insertedMoney = new InsertedMoney(insertedMoney);
+    public void insertMoney(String insertedMoney) {
+        this.insertedMoney = new InsertedMoney(Parser.parse(insertedMoney));
     }
 
     public void buyProduct(String productName) {
