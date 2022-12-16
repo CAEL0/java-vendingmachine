@@ -20,6 +20,7 @@ public class OutputView {
                     System.out.printf(ViewConstants.COIN_QUANTITY, amount, quantity);
                     System.out.println();
                 });
+        System.out.println();
     }
 
     public void printInsertedMoney(InsertedMoney insertedMoney) {
