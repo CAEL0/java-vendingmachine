@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 public class VendingMachine {
     private final List<Integer> coinQuantities = new ArrayList<>();
     private final List<Product> productList = new ArrayList<>();
+    private InsertedMoney insertedMoney;
 
     public void generateCoins(int holdingSum) {
         Validator.validateLowerBound(holdingSum, 0);
@@ -65,7 +66,15 @@ public class VendingMachine {
         }
     }
 
+    public void insertMoney(int insertedMoney) {
+        this.insertedMoney = new InsertedMoney(insertedMoney);
+    }
+
     public List<Integer> getCoinQuantities() {
         return coinQuantities;
+    }
+
+    public int getInsertedMoney() {
+        return insertedMoney.getInsertedMoney();
     }
 }
