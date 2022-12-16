@@ -1,5 +1,6 @@
 package vendingmachine.domain;
 
+import vendingmachine.constant.ExceptionConstants;
 import vendingmachine.util.Validator;
 
 public class InsertedMoney {
@@ -12,7 +13,14 @@ public class InsertedMoney {
     }
 
     public void useMoney(int price) {
+        validateUsingMoney(price);
         insertedMoney -= price;
+    }
+
+    private void validateUsingMoney(int price) {
+        if (insertedMoney < price) {
+            throw new IllegalArgumentException(ExceptionConstants.NOT_ENOUGH_MONEY.getMessage());
+        }
     }
 
     public int getInsertedMoney() {
