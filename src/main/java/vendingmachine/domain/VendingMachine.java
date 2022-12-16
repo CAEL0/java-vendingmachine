@@ -64,4 +64,8 @@ public class VendingMachine {
             throw new IllegalArgumentException(ExceptionConstants.DUPLICATED_PRODUCT_NAME.getMessage());
         }
     }
+
+    public List<Integer> getCoinQuantities() {
+        return coinQuantities;
+    }
 }
