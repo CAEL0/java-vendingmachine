@@ -33,11 +33,11 @@ public class VendingMachine {
         return minimumPrice.isPresent() && minimumPrice.getAsInt() <= insertedMoney.getInsertedMoney();
     }
 
-    public List<Integer> getCoinQuantities() {
-        return coinQuantities.getCoinQuantities();
+    public CoinQuantities getCoinQuantities() {
+        return coinQuantities;
     }
 
-    public int getInsertedMoney() {
-        return insertedMoney.getInsertedMoney();
+    public InsertedMoney getInsertedMoney() {
+        return insertedMoney;
     }
 }
