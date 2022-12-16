@@ -2,6 +2,7 @@ package vendingmachine.domain;
 
 import vendingmachine.constant.ExceptionConstants;
 import vendingmachine.constant.VendingMachineConstants;
+import vendingmachine.util.Parser;
 import vendingmachine.util.Validator;
 
 public class Product {
@@ -12,20 +13,12 @@ public class Product {
     public Product(String name, String price, String amount) {
         this.name = name;
 
-        this.price = parse(price);
+        this.price = Parser.parse(price);
         Validator.validateLowerBound(this.price, VendingMachineConstants.LOWEST_PRICE);
         Validator.validateNumberIsMultipleOfTen(this.price);
 
-        this.amount = parse(amount);
+        this.amount = Parser.parse(amount);
         Validator.validateLowerBound(this.amount, 0);
-    }
-
-    private int parse(String input) {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ExceptionConstants.INCORRECT_RANGE.getMessage());
-        }
     }
 
     public void validateAmount() {
