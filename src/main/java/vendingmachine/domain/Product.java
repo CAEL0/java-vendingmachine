@@ -7,7 +7,7 @@ import vendingmachine.util.Validator;
 public class Product {
     private final String name;
     private final int price;
-    private final int amount;
+    private int amount;
 
     public Product(String name, String price, String amount) {
         this.name = name;
@@ -28,6 +28,10 @@ public class Product {
         }
     }
 
+    public void buy() {
+        amount--;
+    }
+
     public String getName() {
         return name;
     }
@@ -36,7 +40,7 @@ public class Product {
         return price;
     }
 
-    public int amount() {
+    public int getAmount() {
         return amount;
     }
 }
