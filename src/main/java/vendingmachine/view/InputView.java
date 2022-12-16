@@ -1,23 +1,14 @@
 package vendingmachine.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import vendingmachine.constant.ExceptionConstants;
 
 public class InputView {
 
-    public int readHoldingSum() {
+    public String readHoldingSum() {
         System.out.println(ViewConstants.ASKING_HOLDING_SUM);
         String input = Console.readLine();
         System.out.println();
-        return parse(input);
-    }
-
-    private int parse(String input) {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ExceptionConstants.INCORRECT_RANGE.getMessage());
-        }
+        return input;
     }
 
     public String readProductList() {
@@ -27,11 +18,11 @@ public class InputView {
         return input;
     }
 
-    public int readInsertedMoney() {
+    public String readInsertedMoney() {
         System.out.println(ViewConstants.ASKING_INSERTED_MONEY);
         String input = Console.readLine();
         System.out.println();
-        return parse(input);
+        return input;
     }
 
     public String readProductName() {
