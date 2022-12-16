@@ -19,6 +19,12 @@ public class VendingMachine {
         this.insertedMoney = new InsertedMoney(insertedMoney);
     }
 
+    public void buyProduct(String productName) {
+        Product product = productList.getProduct(productName);
+        insertedMoney.useMoney(product.getPrice());
+        product.buy();
+    }
+
     public List<Integer> getCoinQuantities() {
         return coinQuantities.getCoinQuantities();
     }
