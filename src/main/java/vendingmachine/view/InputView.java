@@ -27,8 +27,8 @@ public class InputView {
         return input;
     }
 
-    public int readInsertingMoney() {
-        System.out.println(ViewConstants.ASKING_INSERTING_MONEY);
+    public int readInsertedMoney() {
+        System.out.println(ViewConstants.ASKING_INSERTED_MONEY);
         String input = Console.readLine();
         System.out.println();
         return parse(input);
