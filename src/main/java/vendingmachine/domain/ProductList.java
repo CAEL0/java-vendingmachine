@@ -45,13 +45,13 @@ public class ProductList {
         productList.add(new Product(name, price, amount));
     }
 
-    public int getPrice(String productName) {
+    public Product getProduct(String productName) {
         List<Product> targetProduct = productList.stream()
                 .filter(product -> product.getName().equals(productName))
                 .collect(Collectors.toList());
 
         validateProductName(targetProduct);
-        return targetProduct.get(0).getPrice();
+        return targetProduct.get(0);
     }
 
     private void validateProductName(List<Product> targetProduct) {
