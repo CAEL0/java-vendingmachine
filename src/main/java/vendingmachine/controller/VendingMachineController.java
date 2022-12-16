@@ -10,21 +10,18 @@ public class VendingMachineController {
     private final VendingMachine vendingMachine = new VendingMachine();
 
     public void run() {
-        init();
-    }
-
-    private void init() {
         initCoin();
         initProduct();
+        insertMoney();
     }
 
     private void initCoin() {
-        int holdingSum = inputView.readHoldingSum();
+        String holdingSum = inputView.readHoldingSum();
         generateCoins(holdingSum);
         outputView.printCoinQuantityList(vendingMachine.getCoinQuantities());
     }
 
-    private void generateCoins(int holdingSum) {
+    private void generateCoins(String holdingSum) {
         while (true) {
             try {
                 vendingMachine.generateCoins(holdingSum);
@@ -40,6 +37,18 @@ public class VendingMachineController {
         while (true) {
             try {
                 vendingMachine.addProducts(productList);
+                return;
+            } catch (IllegalArgumentException e) {
+                outputView.printException(e);
+            }
+        }
+    }
+
+    private void insertMoney() {
+        String insertedMoney = inputView.readInsertedMoney();
+        while (true) {
+            try {
+                vendingMachine.insertMoney(insertedMoney);
                 return;
             } catch (IllegalArgumentException e) {
                 outputView.printException(e);
