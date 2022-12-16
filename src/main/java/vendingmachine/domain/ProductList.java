@@ -11,12 +11,13 @@ public class ProductList {
     private final List<Product> productList = new ArrayList<>();
 
     public ProductList(String productList) {
+        this.productList.clear();
         List<String> splittedProductList = List.of(productList.split(VendingMachineConstants.PRODUCT_DELIMITER));
-        validateDuplication(splittedProductList.size());
-
         Arrays.stream(productList.split(VendingMachineConstants.PRODUCT_DELIMITER))
                 .peek(this::validateProduct)
                 .forEach(this::addProduct);
+
+        validateDuplication(splittedProductList.size());
     }
 
     private void validateDuplication(int size) {
