@@ -61,4 +61,12 @@ public class ProductList {
             throw new IllegalArgumentException(ExceptionConstants.NO_SUCH_PRODUCT.getMessage());
         }
     }
+
+    public OptionalInt getMinimumPrice() {
+        return productList.stream()
+                .filter(product -> product.getAmount() > 0)
+                .map(Product::getPrice)
+                .mapToInt(Integer::intValue)
+                .min();
+    }
 }
