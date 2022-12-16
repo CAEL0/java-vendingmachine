@@ -1,35 +1,18 @@
 package vendingmachine.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import vendingmachine.constant.ExceptionConstants;
 import vendingmachine.constant.VendingMachineConstants;
-import vendingmachine.util.Validator;
 
 import java.util.*;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class VendingMachine {
-    private final List<Integer> coinQuantities = new ArrayList<>();
+    private CoinQuantities coinQuantities;
     private final List<Product> productList = new ArrayList<>();
     private InsertedMoney insertedMoney;
 
     public void generateCoins(int holdingSum) {
-        Validator.validateLowerBound(holdingSum, 0);
-        Validator.validateNumberIsMultipleOfTen(holdingSum);
-        List<Integer> coinValues = Arrays.stream(Coin.values())
-                .map(Coin::getAmount)
-                .collect(Collectors.toList());
-
-        while (holdingSum > 0) {
-            int coin = Randoms.pickNumberInList(List.of(500, 100, 50, 10));
-            if (holdingSum >= coin) {
-                holdingSum -= coin;
-                int index = coinValues.indexOf(coin);
-                int quantity = coinQuantities.get(index);
-                coinQuantities.set(index, quantity + 1);
-            }
-        }
+        coinQuantities = new CoinQuantities(holdingSum);
     }
 
     public void addProducts(String productList) {
@@ -71,7 +54,7 @@ public class VendingMachine {
     }
 
     public List<Integer> getCoinQuantities() {
-        return coinQuantities;
+        return coinQuantities.getCoinQuantities();
     }
 
     public int getInsertedMoney() {
